@@ -155,8 +155,8 @@ $size(t)_a$ > $size(t')_a$  (3>2)
 
 Если рассматривать длинные слова, то к сожалению, нашлось как минимум два слова, применяя правила к которым, мы получили цикл.
 
-\Tree [.aabaa [.babaa [.babba [.babaa цикл ] ] ] [.baaa [.baa bba ] ] ]
-\Tree [.bbaa [.bbba bbaa ] ] 
+[Примеры с циклом](C:/Users/anyal/PycharmProjects/FormalLanguageTheory/Lab1/image_tree/tree_cucle.png)
+
 
 Из последнего шага можно сделать вывод что она не является завершимой (не терминируема).
 
@@ -247,36 +247,44 @@ bbb → bba
 
 10) bba → bbb
 
-Вданном случае переписались правила 9) и 10).
+В данном случае переписались правила 9) и 10).
 
 Дальше приминила алгоритм пополняемость по Кнуту-Бендиксу. 
 
 Ниже преведены примеры при которых были получины новые правила. 
-Более подробный вариант, в котором рассписаны все случае смотрить в отдельном файле. (там фотографии ручного способа )
+
 
 (4)(1) 
 \Tree [.cac [.bac [.bc c ] ] cc ] 
 
+[(4)(1)](C:/Users/anyal/PycharmProjects/FormalLanguageTheory/Lab1/image_tree/(4)(1)tree.png)
+
 11) cc → c
 
-\vspace{1cm}
+
 
 (2)(2) 
 \Tree [.aaa [.baa [.bba bbb ] ] [.aba abb ] ] 
 
+[(2)(2)](C:/Users/anyal/PycharmProjects/FormalLanguageTheory/Lab1/image_tree/(2)(2)tree.png)
+
 12) abb → bbb
 
-\vspace{1cm}
+
 
 (4)(2)
-\Tree [.caa [.aaa [.aa ba ] ] [.cda [.baa [.bba bbb ] ] ] ] 
+\Tree [.caa [.aaa [.aa ba ] ] [.cda [.baa [.bba bbb ] ] ] ]
+
+[(4)(2)](C:/Users/anyal/PycharmProjects/FormalLanguageTheory/Lab1/image_tree/(4)(2)tree.png)
 
 13) bbb → ba
 
-\vspace{1cm}
+
 
 (7)(2)
 \Tree [.aaaa [.aaa [.aa ba ] ] [.aaba [.baba [.babb [.bbbb bab ] ] ] ] ] 
+
+[(7)(2)](C:/Users/anyal/PycharmProjects/FormalLanguageTheory/Lab1/image_tree/(7)(2)tree.png)
 
 ```
 aaaa
@@ -290,17 +298,27 @@ aaaa
                 └── bab
 ```
 
-
 14) bab → ba
 
-\vspace{1cm}
+
 
 (5)(10)
 \Tree [.bcba [.cba [.bca [.baa [.bba [.bbb ba ] ] ] ] ] [.cbbb [.bcbb [.cbb [.bcb [.cb [.bc c ] ] ] ] ] ] ] 
 
+[(5)(10)](C:/Users/anyal/PycharmProjects/FormalLanguageTheory/Lab1/image_tree/(5)(10)tree.png)
+
 15) ba → c
 
 После получения ba -> c многие критические пары уже редуцировались к одному общему нормальному виду, поэтому дальнейших новых правил уже не появлялось.
+
+Более подробный вариант, в котором расписаны все случае представлен ниже. (фотографии ручного способа)
+
+[Способ Кнута-Бендикса стр.1](C:/Users/anyal/PycharmProjects/FormalLanguageTheory/Lab1/image_tree/kb1.jpg)
+
+[Способ Кнута-Бендикса стр.2](C:/Users/anyal/PycharmProjects/FormalLanguageTheory/Lab1/image_tree/kb2.jpg)
+
+[Способ Кнута-Бендикса стр.3](C:/Users/anyal/PycharmProjects/FormalLanguageTheory/Lab1/image_tree/kb3.jpg)
+
 
 
 Получили пять новых правил. Я просчитывала критические пары пока не переставали появляться новые правила. Далее, используя полученный набор правил для редукции слов, большинство слов сводится к небольшому множест­ву нормальных форм: a, b, c, ab, bb. 
