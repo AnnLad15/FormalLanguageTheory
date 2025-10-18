@@ -8,8 +8,6 @@ def get_initials_rules():
         ("ccc", "c"),
         ("aaa", "aa"),
         ("aab", "ba"),
-        #("abb", "aba"),
-        #("bbb", "bba"),
         ("aba", "abb"),
         ("bba", "bbb"),
     ]

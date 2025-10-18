@@ -11,11 +11,18 @@ def invariant_test_iteration(word, T, rules_iterations=10):
         source_word = srs.apply_n_times_random_rule(source_word, T, 1)
         words_chain.append(source_word)
     result = calculate_and_test_chain(words_chain)
-    for index, value in enumerate(result):
-        if not value["result"]:
-            print(word)
-            print(result[index - 1])
-            print(value)
+
+    #вывод строчек в которых инварианты False
+    #for index, value in enumerate(result):
+        #if not value["result"]:
+            #print(word)
+            #print(result[index - 1])
+            #print(value)
+
+    for r in result:
+        if not r["result"]:
+            return result
+    return None
 
 
 def calculate_and_test_chain(words_chain):
@@ -104,52 +111,6 @@ def inv_odd_len_block_x_parity(word: str):
     return block_count_odd % 2
 
 
-# def block_parity_total(word: str):
-#     """
-#     Возвращает количество блоков и их чётность для слова.
-#     Блок — это последовательность одинаковых символов подряд.
-#     """
-#     if not word:
-#         return 0, 0  # пустое слово → 0 блоков, чётность 0
-#
-#     block_count = 1  # первый блок уже есть
-#     prev = word[0]
-#
-#     for ch in word[1:]:
-#         if ch != prev:
-#             block_count += 1
-#             prev = ch
-#
-#     parity = block_count % 2
-#     return block_count, parity
-
-
-def count_blocks(word: str):
-    """
-    Возвращает количество блоков и их чётность для слова.
-    Блок — это последовательность одинаковых символов подряд.
-    """
-    if not word:
-        return 0, 0, 0  # пустое слово → 0 блоков, чётность 0
-
-    block_count = 1  # первый блок уже есть
-    block_len = 1
-    prev = word[0]
-    block_count_odd = 0
-
-
-    for ch in word[1:]:
-        if ch != prev:
-            block_count_odd += block_len % 2
-            block_count += 1
-            block_len = 1
-            prev = ch
-        else:
-            block_len += 1
-    block_count_odd += block_len % 2
-
-    return block_count, block_count_odd, block_count-block_count_odd
-
 def count_blocks_by_leter(word: str, leter='x'):
     """
     Функция подсчета общее количество блоков, количество блоков нечетной и четной длины
@@ -208,25 +169,31 @@ def invariant_test(iteration_count=3000):
     T = test_rules.get_initials_rules()
     T_new = test_rules.get_new_rules()
     alphabet = test_rules.get_alphabet()
-    success = 0
-    fail = 0
-    for i in range(iteration_count):
+    ok_old = fail_old = 0
+    ok_new = fail_new = 0
+
+    for i in range(1, iteration_count + 1):
         word = srs.generate_random_word(alphabet, 10)
+
+        # T
+        result_old = invariant_test_iteration(word, T, 10)
+        if result_old is None:
+            ok_old += 1
+        else:
+            fail_old += 1
+
+        # T_new
+        result_new = invariant_test_iteration(word, T_new, 10)
+        if result_new is None:
+            ok_new += 1
+        else:
+            fail_new += 1
+
         if i % 10 == 0:
-            print(i, "/ 3000", success, fail)
-        invariant_test_iteration(word, T, 10)
-        invariant_test_iteration(word, T_new, 10)
+            print(f"{i}/{iteration_count}  T: success:{ok_old}, fail:{fail_old}  T_new: success:{ok_new}, fail:{fail_new}")
 
-    #     if result:
-    #         success += 1
-    #     else:
-    #         fail += 1
-    #         print("fuzzing", i, result, source_word, target_word)
-    # return success, fail
-
+    print("\n==== Results ====")
+    print(f"T: success:{ok_old}  fail:{fail_old}")
+    print(f"T_new: success:{ok_new}  fail:{fail_new}")
 
 invariant_test()
-
-# print(
-#     invariant_test_iteration(test_rules.get_initials_rules(), test_rules.get_new_rules(), test_rules.get_alphabet(), 20,
-#                              10))
