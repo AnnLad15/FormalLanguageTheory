@@ -33,7 +33,7 @@ def fuzz_iteration(T, T_new, alphabet, word_len=10, rules_iterations=10, max_dep
 
 def fuzz_test(iteration_count=3000):
     T = test_rules.get_initials_rules()
-    T_new = test_rules.get_new_rules()
+    T_new = test_rules.get_new_rules_minimal()
     alphabet = test_rules.get_alphabet()
     success = 0
     fail = 0

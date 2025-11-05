@@ -167,7 +167,8 @@ def inv_count_a_plus_b_mod2(word: str):
 
 def invariant_test(iteration_count=3000):
     T = test_rules.get_initials_rules()
-    T_new = test_rules.get_new_rules()
+    #T_new = test_rules.get_new_rules()
+    T_new = test_rules.get_new_rules_minimal()
     alphabet = test_rules.get_alphabet()
     ok_old = fail_old = 0
     ok_new = fail_new = 0
