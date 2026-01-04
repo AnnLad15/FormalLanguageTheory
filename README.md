@@ -7,7 +7,7 @@
 
 ### 1. Возможно малый НКА
 
-![NFA](C:\Users\anyal\PycharmProjects\FormalLanguageTheory\Lab2\automata\NFA.png)
+![NFA](Lab2/automata/NFA.png)
 
 Таблица множеств классов эквиволентности 
 | State | ε | a | b | ab | bab | aab | abab | baab | aabab | abaab | baabab | babaaa | abaabab | bbabaaa | bbbabaaa | bbbabaaa | bbbabaaa | bbbabaaa | ababbabaaa | babbbabaaa | bababbabaaa |
@@ -36,7 +36,7 @@
 
 ### 2. Минимальный ДКА
 
-![DFA](C:\Users\anyal\PycharmProjects\FormalLanguageTheory\Lab2\automata\DFA.png)
+![DFA](Lab2/automata/DFA.png)
 
 Таблица классов эквиволентности 
 | №   | Состояние     | ε | a | b | aa | bb | ab | abab | baba | aaa | (ba)^3 | aba  | bab  | aabab | baabab | abaabab | abaaa | abb(ba)^3 | bb(ba)^3 | b(ba)^3 | ab(ba)^3 | bab(ba)^3 | (ab)^2(ba)^3 | a+b(ba)^3 | (ba)^2b(ba)^3 |
@@ -70,7 +70,7 @@
 
 ### 3. ПКА
 
-![AFA](C:\Users\anyal\PycharmProjects\FormalLanguageTheory\Lab2\automata\AFA.png)
+![AFA](Lab2/automata/AFA.png)
 
 Таблица классов эквиволентности 
 | Состояние | ε  | b  | aa | ba | aab | baab | aaab | aaaab |
