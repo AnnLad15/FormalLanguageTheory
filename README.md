@@ -2,105 +2,12 @@
 
 Студент: Ладонцева Анна Андреевна ИУ9-52Б
 
-Дано академическое регулярное выражение (вариант 14): (aa*ab|bbabb|abb*abab)*baba(a|b)(a|b)((aa)*ab|babb*aabab)*
+Дано академическое регулярное выражение (вариант 14): `(aa*ab|bbabb|abb*abab)*baba(a|b)(a|b)((aa)*ab|babb*aabab)*`
 
 
 ### 1. Возможно малый НКА
 
-```dot
-digraph NFA {
-  rankdir=LR;
-  node [shape=circle];
-  label="Regex: (aa*ab|bbabb|abb*abab)*baba(a|b)(a|b)((aa)*ab|babb*aabab)*";
-  labelloc=t;
-
-  start [shape=point, style=invis];
-  start -> q0 [label="start"];
-  q21 [shape=doublecircle];
-  q22 [shape=doublecircle];
-  q34 [shape=doublecircle];
-  q26 [shape=doublecircle];
-  
-  q0 -> q1 [label="a"];
-  q0 -> q4 [label="b"];
-  q0 -> q9 [label="a"];
-  
-  q1 -> q1 [label="a"];
-  q1 -> q2 [label="a"];
-  q2 -> q3 [label="b"];
-  
-  q4 -> q5 [label="b"];
-  q5 -> q6 [label="a"];
-  q6 -> q7 [label="b"];
-  q7 -> q8 [label="b"];
-  
-  q9 -> q10 [label="b"];
-  q10 -> q10 [label="b"];
-  q10 -> q11 [label="a"];
-  q11 -> q12 [label="b"];
-  q12 -> q13 [label="a"];
-  q13 -> q14 [label="b"];
-  
-  q3 -> q1 [label="a"];
-  q3 -> q4 [label="b"];
-  q3 -> q9 [label="a"];
-  
-  q8 -> q1 [label="a"];
-  q8 -> q4 [label="b"];
-  q8 -> q9 [label="a"];
-  
-  q14 -> q1 [label="a"];
-  q14 -> q4 [label="b"];
-  q14 -> q9 [label="a"];
-  
-  q0 -> q15 [label="b"];
-  q3 -> q15 [label="b"];
-  q8 -> q15 [label="b"];
-  q14 -> q15 [label="b"];
-  
-  q15 -> q16 [label="a"];
-  q16 -> q17 [label="b"];
-  q17 -> q18 [label="a"];
-  q18 -> q19 [label="a"];
-  q18 -> q20 [label="b"];
-  
-  q19 -> q21 [label="a"];
-  q19 -> q22 [label="b"];
-  q20 -> q21 [label="a"];
-  q20 -> q22 [label="b"];
-  
-  q21 -> q23 [label="a"];
-  q21 -> q27 [label="b"];
-  q21 -> q25 [label="a"];
-  
-  q22 -> q23 [label="a"];
-  q22 -> q25 [label="a"];
-  q22 -> q27 [label="b"];
-  
-  q23 -> q24 [label="a"];
-  q24 -> q23 [label="a"];
-  q24 -> q25 [label="a"];
-  q25 -> q26 [label="b"];
-  
-  q26 -> q25 [label="a"];
-  q26 -> q23 [label="a"];
-  q26 -> q27 [label="b"];
-  
-  q27 -> q28 [label="a"];
-  q28 -> q29 [label="b"];
-  q29 -> q29 [label="b"];
-  q29 -> q30 [label="a"];
-  q30 -> q31 [label="a"];
-  q31 -> q32 [label="b"];
-  q32 -> q33 [label="a"];
-  q33 -> q34 [label="b"];
-  
-  q34 -> q23 [label="a"];
-  q34 -> q25 [label="a"];
-  q34 -> q27 [label="b"];
-  
-}
-```
+![NFA](C:\Users\anyal\PycharmProjects\FormalLanguageTheory\Lab2\automata\NFA.png)
 
 Таблица множеств классов эквиволентности 
 | State | ε | a | b | ab | bab | aab | abab | baab | aabab | abaab | baabab | babaaa | abaabab | bbabaaa | bbbabaaa | bbbabaaa | bbbabaaa | bbbabaaa | ababbabaaa | babbbabaaa | bababbabaaa |
@@ -129,77 +36,7 @@ digraph NFA {
 
 ### 2. Минимальный ДКА
 
-```dot
-digraph min_DFA {
-  rankdir=LR;
-  node [shape=circle];
-  label="Regex: (aa*ab|bbabb|abb*abab)*baba(a|b)(a|b)((aa)*ab|babb*aabab)*";
-  labelloc=t;
-
-  start [shape=point, style=invis];
-  start -> q15 [label="start"];
-  q1 [shape=doublecircle];
- 
-  
-  q15 -> q22 [label="a"];
-  q15 -> q13 [label="b"];
-  
-  q22 -> q19 [label="a"];
-  q22 -> q24 [label="b"];
-  
-  q24 -> q21 [label="a"];
-  q24 -> q24 [label="b"];
-  
-  q19 -> q19 [label="a"];
-  q19 -> q15 [label="b"];
-  
-  q21 -> q18 [label="b"];
-  
-  q18 -> q17 [label="a"];
-  
-  q17 -> q15 [label="b"];
-  
-  q13 -> q11 [label="a"];
-  q13 -> q23 [label="b"];
-  
-  q23 -> q20 [label="a"];
-  
-  q20 -> q17 [label="b"];
- 
-  q11 -> q8 [label="b"];
-  
-  q8 -> q4 [label="a"];
-  
-  q4 -> q2 [label="a"];
-  q4 -> q2 [label="b"];
-  
-  q2 -> q1 [label="a"];
-  q2 -> q1 [label="b"];
- 
-  q1 -> q6 [label="a"];
-  q1 -> q16 [label="b"];
-  
-  q6 -> q9 [label="a"];
-  q6 -> q1 [label="b"];
-  
-  q9 -> q6 [label="a"];
-  
-  q16 -> q14 [label="a"];
-  
-  q14 -> q12 [label="b"];
-  
-  q12 -> q10 [label="a"];
-  q12 -> q12 [label="b"];
-  
-  q10 -> q7 [label="a"];
-  
-  q7 -> q5 [label="b"];
-  
-  q5 -> q3 [label="a"];
-  
-  q3 -> q1 [label="b"];
-}
-```
+![DFA](C:\Users\anyal\PycharmProjects\FormalLanguageTheory\Lab2\automata\DFA.png)
 
 Таблица классов эквиволентности 
 | №   | Состояние     | ε | a | b | aa | bb | ab | abab | baba | aaa | (ba)^3 | aba  | bab  | aabab | baabab | abaabab | abaaa | abb(ba)^3 | bb(ba)^3 | b(ba)^3 | ab(ba)^3 | bab(ba)^3 | (ab)^2(ba)^3 | a+b(ba)^3 | (ba)^2b(ba)^3 |
@@ -233,101 +70,7 @@ digraph min_DFA {
 
 ### 3. ПКА
 
-```dot
-digraph AFA {
-  rankdir=LR;
-  node [shape=circle];
-  label="Regex: (aa*ab|bbabb|abb*abab)*baba(a|b)(a|b)((aa)*ab|babb*aabab)*";
-  labelloc=t;
-
-  start [shape=point, style=invis];
-  start -> q15 [label="start"];
-  q1 [shape=doublecircle];
-   "&1" [shape=square];
-   "&2" [shape=square];
- 
-  
-  q15 -> q22 [label="a"];
-  q15 -> q13 [label="b"];
-  
-  q22 -> q19 [label="a"];
-  q22 -> q24 [label="b"];
-  
-  q24 -> q21 [label="a"];
-  q24 -> q24 [label="b"];
-  
-  q19 -> q19 [label="a"];
-  q19 -> q15 [label="b"];
-  
-  q21 -> q18 [label="b"];
-  
-  q18 -> q17 [label="a"];
-  
-  q17 -> q15 [label="b"];
-  
-  q13 -> q11 [label="a"];
-  q13 -> q23 [label="b"];
-  
-  q23 -> q20 [label="a"];
-  
-  q20 -> q17 [label="b"];
- 
-  q11 -> q8 [label="b"];
- 
-  
-  q4 -> q2 [label="a"];
-  q4 -> q2 [label="b"];
-  
-  q2 -> q1 [label="a"];
-  q2 -> q1 [label="b"];
- 
-  q1 -> q16 [label="b"];
-  
-  q6 -> q9 [label="a"];
-  q6 -> q1 [label="b"];
-  
-  q9 -> q6 [label="a"];
-  
-  q16 -> q14 [label="a"];
-  
-  q14 -> q12 [label="b"];
-  
-  q12 -> q10 [label="a"];
-  q12 -> q12 [label="b"];
-  
-  q10 -> q7 [label="a"];
-  
-  q7 -> q5 [label="b"];
-  
-  q5 -> q3 [label="a"];
-  
-  q3 -> q1 [label="b"];
-  
-  q8 -> "&1" [label="ε"];
-  "&1" -> q4 [label="a"];
-  "&1" -> q25 [label="a"];
-  
-  q25 -> q26 [label="a"];
-  q25 -> q27 [label="b"];
-  
-  q26 -> q26 [label="a"];
-  q26 -> q1 [label="a"];
-  q26 -> q1 [label="b"];
-  
-  q27 -> q27 [label="b"];
-  q27 -> q1 [label="a"];
-  q27 -> q1 [label="b"];
-  
-  q1 -> "&2" [label="ε"];
-  
-  "&2" -> q28 [label="a"];
-  "&2" -> q6 [label="a"];
-  
-  q28 -> q28 [label="a"];
-  q28 -> q1 [label="b"];
-  
-}
-```
+![AFA](C:\Users\anyal\PycharmProjects\FormalLanguageTheory\Lab2\automata\AFA.png)
 
 Таблица классов эквиволентности 
 | Состояние | ε  | b  | aa | ba | aab | baab | aaab | aaaab |
