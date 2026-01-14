@@ -24,11 +24,20 @@ def apply_rules_until_target_found(source_word, target_word, rules, max_iteratio
     return False
 
 
-def fuzz_iteration(T, T_new, alphabet, word_len=10, rules_iterations=10, max_depth=1000):
+def fuzz_iteration(T, T_new, alphabet, word_len=10, rules_iterations=None, max_depth=1000):  # rules_iterations=10
     source_word = srs.generate_random_word(alphabet, word_len)
     target_word = srs.apply_n_times_random_rule(source_word, T, rules_iterations)
-    success = apply_rules_until_target_found(source_word, target_word, T_new, max_depth)
-    return source_word, target_word, success
+
+
+    new_nf_from_target = srs.apply_n_times_random_rule(target_word, T_new, None)
+    #print(f"Старт: {source_word} → Цель: {target_word} → Цель: {new_nf_from_target}")
+
+    #success = apply_rules_until_target_found(source_word, target_word, T_new, max_depth)
+    #return source_word, target_word, success
+
+
+    success = apply_rules_until_target_found(source_word, new_nf_from_target, T_new, max_depth)
+    return source_word, new_nf_from_target, success
 
 
 def fuzz_test(iteration_count=3000):
@@ -40,7 +49,7 @@ def fuzz_test(iteration_count=3000):
     for i in range(iteration_count):
         if i % 10 == 0:
             print(i,"/",iteration_count , success, fail)
-        source_word, target_word, result = fuzz_iteration(T, T_new, alphabet, 20, 10, 100)
+        source_word, target_word, result = fuzz_iteration(T, T_new, alphabet, 15, None, 100)  #10
         if result:
             success += 1
         else:

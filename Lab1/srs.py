@@ -59,13 +59,23 @@ def test_generate_random_word():
     assert len(generate_random_word(Alphabet, 20)) == 20, "fail"
 
 
-def apply_n_times_random_rule(word, rules, iterations_count):
+
+def apply_n_times_random_rule(word, rules, iterations_count=None):
     new_word = word
-    for i in range(iterations_count):
-        words_all = list(apply_rules(new_word, rules))
-        if len(words_all) == 0:
-            break
-        new_word = words_all[random.randint(0, len(words_all) - 1)]
+    # Если iterations_count задан, используем фиксированное количество итераций
+    if iterations_count is not None:
+        for i in range(iterations_count):
+            words_all = list(apply_rules(new_word, rules))
+            if len(words_all) == 0:
+                break
+            new_word = words_all[random.randint(0, len(words_all) - 1)]
+    else:
+        # Иначе применяем до тех пор, пока возможно
+        while True:
+            words_all = list(apply_rules(new_word, rules))
+            if len(words_all) == 0:
+                break
+            new_word = words_all[random.randint(0, len(words_all) - 1)]
     return new_word
 
 
