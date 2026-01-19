@@ -3,7 +3,8 @@ import re
 
 from Lab2.AFA_test import create_afa
 from Lab2.DFA_test import create_dfa
-from Lab2.NFA_test import create_nfa
+#from Lab2.NFA_test import create_nfa
+from Lab2.NFA_min_test import create_nfa
 
 
 def generate_random_word(alphabet, len_word):

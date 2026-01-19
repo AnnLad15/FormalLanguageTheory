@@ -1,4 +1,4 @@
-from Lab2.NFA_test import create_nfa
+from Lab2.NFA_min_test import create_nfa
 
 
 def reachable_table_filtered_nfa(states, alphabet, transitions, final_states, max_depth=3):
