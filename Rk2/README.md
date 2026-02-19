@@ -17,10 +17,7 @@
 Решение:
 ![№2 стр.5](solutions/num2_s5.jpg)
 ![№2 стр.6](solutions/num2_s6.jpg)
-
-Один из вариантов старого решения
-![№2 стр.6](solutions/num2_s5(other).jpg)
-![№2 стр.6](solutions/num2_s6(other).jpg)
+![№2 стр.7](solutions/num2_s7.jpg)
 
 
 **3. Язык, определяемый следующей атрибутной грамматикой:**
